@@ -1,210 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 
-  <!-- src="./images/img_21805_0_0.png" -->
-
+    <!-- src="./images/img_21805_0_0.png" -->
+    <script type="text/javascript" src="//lib.baomitu.com/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="//lib.baomitu.com/clipboard.js/1.6.1/clipboard.min.js"></script>
+    <script src="js/index.js"></script>
 </head>
 <body>
-  <script type="text/javascript" src="//lib.baomitu.com/jquery/2.2.4/jquery.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/1.6.1/clipboard.min.js"></script><script>
+<div class="mod mod-html">
+    <style type="text/css">
+        .container {
+            padding: 14px 14px 0;
+        }
 
-  	//获得参数
-  	function getQueryVariable(variable)
-  	{
-  		   var query = window.location.search.substring(1);
-  		   var vars = query.split("&");
-  		   for (var i=0;i<vars.length;i++) {
-  		  var pair = vars[i].split("=");
-  		  if(pair[0] == variable){return unescape(pair[1]);}
-  		   }
-  		   return(false);
-  	}
+        .container img {
+            box-shadow: 0px 4px 8px rgba(21, 0, 71, .1);
+            width: 100%;
+        }
 
+        .beatword {
+            margin: 14px;
+            margin-top: 16px;
+            text-align: center;
+        }
 
-  // private property
-  _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-  // public method for decoding
-  this.decode = function (input) {
-      var output = "";
-      var chr1, chr2, chr3;
-      var enc1, enc2, enc3, enc4;
-      var i = 0;
-      input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
-      while (i < input.length) {
-          enc1 = _keyStr.indexOf(input.charAt(i++));
-          enc2 = _keyStr.indexOf(input.charAt(i++));
-          enc3 = _keyStr.indexOf(input.charAt(i++));
-          enc4 = _keyStr.indexOf(input.charAt(i++));
-          chr1 = (enc1 << 2) | (enc2 >> 4);
-          chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
-          chr3 = ((enc3 & 3) << 6) | enc4;
-          output = output + String.fromCharCode(chr1);
-          if (enc3 != 64) {
-              output = output + String.fromCharCode(chr2);
-          }
-          if (enc4 != 64) {
-              output = output + String.fromCharCode(chr3);
-          }
-      }
-      output = _utf8_decode(output);
-      return output;
-  }
+        .word-border {
+            background: #fff1ef;
+            border: 2px dashed #df7162;
+            padding: 10px;
+            color: #df7162;
+            font-size: 14px;
+            text-align: left;
+        }
 
-  // private method for UTF-8 decoding
-  _utf8_decode = function (utftext) {
-      var string = "";
-      var i = 0;
-      var c = c1 = c2 = 0;
-      while (i < utftext.length) {
-          c = utftext.charCodeAt(i);
-          if (c < 128) {
-              string += String.fromCharCode(c);
-              i++;
-          } else if ((c > 191) && (c < 224)) {
-              c2 = utftext.charCodeAt(i + 1);
-              string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
-              i += 2;
-          } else {
-              c2 = utftext.charCodeAt(i + 1);
-              c3 = utftext.charCodeAt(i + 2);
-              string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
-              i += 3;
-          }
-      }
-      return string;
-  }
+        .copy-tip {
+            text-align: left;
+            color: #8f8f8f;
+            font-size: 12px;
+            clear: both;
+        }
 
-  var mytimer;
-  function myhide(myclass) {
-      var sdata = document.getElementsByClassName("nav-icon")[0];
-      if (sdata) {
-          sdata.style.display = 'none'
-          clearInterval(mytimer);
-      }
-  }
-  	//复制文本
-  	var clipboard = new Clipboard('.icopy');
-  	clipboard.on('success',function(e) {
-  	  if (e.trigger.disabled == false || e.trigger.disabled == undefined) {
-  		e.trigger.innerHTML = "复制成功，打开【手淘】购买";
-  		e.trigger.style.backgroundColor = "#7dc57d";
-  		e.trigger.disabled = true;
-  		setTimeout(function() {
-  		  e.trigger.innerHTML = "一键复制";
-  		  e.trigger.style.backgroundColor = "#fd643d";
-  		  e.trigger.disabled = false;
-  		},
-  		2000);
-  	  }
-  	});
-  	clipboard.on('error',
-  	function(e) {
-  	  e.trigger.innerHTML = "复制失败,请手动复制";
-  	  e.trigger.style.backgroundColor = "#b5b4b4";
-  	});
+        .copy-tip span {
+            display: inline-block;
+            position: relative;
+            top: 2px;
+            left: -2px;
+            width: 20px;
+            height: 10px;
+            margin: 0 4px;
+            border: 1px dashed #df7162;
+        }
 
-  	$(function() {
+        .icopy {
+            background: #df7162;
+            border-radius: 1000px;
+            color: white;
+            font-size: 18px;
+            margin: 10px auto;
+            padding: 5px 10px;
+            line-height: 30px;
+            height: 30px;
+            width: 200px;
+        }
 
-  	  var kl = getQueryVariable("taowords");
-  	  var kl=kl.match(/\w+/);
-  	  var kl = "￥"+kl+"￥"
-  	  $("#icopy").attr("data-clipboard-text",kl);
-  	  $("#kl").text(kl);
-          mytimer = setInterval(function() {
-          myhide(decode('YWQtY2xvc2Utd3JhcA=='))
-          }, 100);
-  	  $("#img").attr('src',decode(getQueryVariable("pic")));
+        .kz-float-layer {
+            height: 0px !important;
+        }
 
-  	  //UA判断
-  	  /* var ua = navigator.userAgent.toLowerCase();
-  	  if (ua.match(/iphone/i) == "iphone" || ua.match(/ipad/i) == "ipad") {
-  		$('#copy-tip').text("长按框内文本→全选复制");
-  	  }  */
-
-  	  //自动选中
-  	  var word = document.querySelector('.word-text');
-  	  document.addEventListener("selectionchange",
-  	  function(e) {
-  		window.getSelection().selectAllChildren(word);
-  	  },
-  	  false);
-  	$("#phone-main").next().hide();
-  	});</script><div class="mod mod-html"><style type="text/css">
-      .container {
-          padding: 14px 14px 0;
-      }
-      .container img {
-          box-shadow: 0px 4px 8px rgba(21, 0, 71, .1);
-          width: 100%;
-      }
-      .beatword {
-          margin: 14px;
-          margin-top: 16px;
-          text-align: center;
-      }
-      .word-border {
-          background: #fff1ef;
-          border: 2px dashed #df7162;
-          padding: 10px;
-          color: #df7162;
-          font-size: 14px;
-          text-align: left;
-      }
-      .copy-tip {
-          text-align: left;
-          color: #8f8f8f;
-          font-size: 12px;
-          clear: both;
-      }
-      .copy-tip span {
-          display: inline-block;
-          position: relative;
-          top: 2px;
-          left: -2px;
-          width: 20px;
-          height: 10px;
-          margin: 0 4px;
-          border: 1px dashed #df7162;
-      }
-      .icopy {
-          background: #df7162;
-          border-radius: 1000px;
-          color: white;
-          font-size: 18px;
-          margin: 10px auto;
-          padding: 5px 10px;
-          line-height: 30px;
-          height: 30px;
-          width: 200px;
-      }
-      .kz-float-layer {
-          height: 0px!important;
-      }
-      .kz-float-layer {
-          display: none!important;
-      }
-  </style><div class="container">
-      <img id="img" src="./images/img_21805_0_0.png">
-  </div><div class="beatword">
-      <div class="word-border">
-          <div>
-              <div id="word-text" class="word-text" style="text-align:center;">
-                  复制红框内信息打开→手掏APP←即可领YouHui券
-                  <span id="kl"></span>
-              </div>
-          </div>
-      </div>
-      <div type="button" data-clipboard-text="" class="icopy" id="icopy">一键复制</div>
-      <div id="copy-tip" class="copy-tip">
-          说明：
-          <br>在点击一键复制后，请打开<img style="width:16px;height:16px;" src="http://wx4.sinaimg.cn/large/9ccca90bgy1fm6sw25k33j200w00wq2q.jpg">"购买
-          <br>若一键复制失败，请长按
-          <span></span>内文字全选复制拷贝
-      </div>
-  </div></div>
+        .kz-float-layer {
+            display: none !important;
+        }
+    </style>
+    <div class="container">
+        <img id="img" src="./images/img_21805_0_0.png">
+    </div>
+    <div class="beatword">
+        <div class="word-border">
+            <div>
+                <div id="word-text" class="word-text" style="text-align:center;">
+                    复制红框内信息打开→手掏APP←即可领YouHui券
+                    <span id="password">(O5d613HpziF)</span>
+                </div>
+            </div>
+        </div>
+        <div type="button" data-clipboard-text="" class="icopy" id="pwdButton">一键复制</div>
+        <div id="copy-tip" class="copy-tip">
+            说明：
+            <br>在点击一键复制后，请打开<img style="width:16px;height:16px;"
+                                 src="http://wx4.sinaimg.cn/large/9ccca90bgy1fm6sw25k33j200w00wq2q.jpg">"购买
+            <br>若一键复制失败，请长按
+            <span></span>内文字全选复制拷贝
+        </div>
+    </div>
+</div>
 </body>
+
+<script>
+
+    //获得参数
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) {
+                return unescape(pair[1]);
+            }
+        }
+        return (false);
+    }
+
+
+    // private property
+    _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+    // public method for decoding
+    this.decode = function (input) {
+        var output = "";
+        var chr1, chr2, chr3;
+        var enc1, enc2, enc3, enc4;
+        var i = 0;
+        input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+        while (i < input.length) {
+            enc1 = _keyStr.indexOf(input.charAt(i++));
+            enc2 = _keyStr.indexOf(input.charAt(i++));
+            enc3 = _keyStr.indexOf(input.charAt(i++));
+            enc4 = _keyStr.indexOf(input.charAt(i++));
+            chr1 = (enc1 << 2) | (enc2 >> 4);
+            chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+            chr3 = ((enc3 & 3) << 6) | enc4;
+            output = output + String.fromCharCode(chr1);
+            if (enc3 != 64) {
+                output = output + String.fromCharCode(chr2);
+            }
+            if (enc4 != 64) {
+                output = output + String.fromCharCode(chr3);
+            }
+        }
+        output = _utf8_decode(output);
+        return output;
+    };
+
+    // private method for UTF-8 decoding
+    _utf8_decode = function (utftext) {
+        var string = "";
+        var i = 0;
+        var c = c1 = c2 = 0;
+        while (i < utftext.length) {
+            c = utftext.charCodeAt(i);
+            if (c < 128) {
+                string += String.fromCharCode(c);
+                i++;
+            } else if ((c > 191) && (c < 224)) {
+                c2 = utftext.charCodeAt(i + 1);
+                string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+                i += 2;
+            } else {
+                c2 = utftext.charCodeAt(i + 1);
+                c3 = utftext.charCodeAt(i + 2);
+                string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+                i += 3;
+            }
+        }
+        return string;
+    };
+
+    var mytimer;
+
+    function myhide(myclass) {
+        var sdata = document.getElementsByClassName("nav-icon")[0];
+        if (sdata) {
+            sdata.style.display = 'none'
+            clearInterval(mytimer);
+        }
+    }
+
+    //复制文本
+    var clipboard = new Clipboard('.icopy');
+    console.log(""+clipboard);
+    clipboard.on('success', function (e) {
+        if (e.trigger.disabled == false || e.trigger.disabled == undefined) {
+            e.trigger.innerHTML = "复制成功，打开【手淘】购买";
+            e.trigger.style.backgroundColor = "#7dc57d";
+            e.trigger.disabled = true;
+            setTimeout(function () {
+                    e.trigger.innerHTML = "一键复制";
+                    e.trigger.style.backgroundColor = "#fd643d";
+                    e.trigger.disabled = false;
+                },
+                2000);
+        }
+    });
+    clipboard.on('error',
+        function (e) {
+            e.trigger.innerHTML = "复制失败,请手动复制";
+            e.trigger.style.backgroundColor = "#b5b4b4";
+        });
+
+    $(function () {
+
+        /*var kl = getQueryVariable("taowords");
+        var kl = kl.match(/\w+/);
+        var kl = "￥" + kl + "￥"
+        $("#icopy").attr("data-clipboard-text", kl);
+        $("#kl").text(kl);
+        mytimer = setInterval(function () {
+            myhide(decode('YWQtY2xvc2Utd3JhcA=='))
+        }, 100);
+        $("#img").attr('src', decode(getQueryVariable("pic")));
+
+        //UA判断
+        /!* var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/iphone/i) == "iphone" || ua.match(/ipad/i) == "ipad") {
+          $('#copy-tip').text("长按框内文本→全选复制");
+        }  *!/
+
+        //自动选中
+        var word = document.querySelector('.word-text');
+        document.addEventListener("selectionchange",
+            function (e) {
+                window.getSelection().selectAllChildren(word);
+            },
+            false);
+        $("#phone-main").next().hide();*/
+    });
+</script>
 </html>
