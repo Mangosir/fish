@@ -1,0 +1,102 @@
+.box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #ffffff;
+  width: 750px;
+  height: 1189px;
+}
+.box .hd {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  z-index: 0;
+  background-color: #9c9c9c;
+  width: 750px;
+  height: 90px;
+  overflow: hidden;
+}
+.box .title {
+  max-width: 738px;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  line-height: 36px;
+  letter-spacing: 0;
+  color: #ededed;
+  font-size: 36px;
+}
+.box .bd {
+  margin-top: 41px;
+  width: 600px;
+  height: 600px;
+  overflow: hidden;
+}
+.box .main {
+  margin-top: 41px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 590px;
+  height: 35px;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  line-height: 18px;
+  letter-spacing: 0;
+  color: #0d0d0d;
+  font-size: 34px;
+}
+.box .submain {
+  margin-top: 14px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  max-width: 528px;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  line-height: 34px;
+  letter-spacing: 0;
+  color: #0d0d0d;
+  font-size: 34px;
+}
+.box .row {
+  margin-top: 34px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 500px;
+  height: 59px;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  line-height: 30px;
+  letter-spacing: 0;
+  color: #323232;
+  font-size: 56px;
+}
+.box .ft {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 47px;
+  background-color: #fc0d1b;
+  width: 750px;
+  height: 112px;
+  overflow: hidden;
+}
+.box .copyPassword {
+  max-width: 738px;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  line-height: 44px;
+  letter-spacing: 0;
+  color: #ffffff;
+  font-size: 44px;
+}

@@ -1,0 +1,103 @@
+/* 视觉稿宽度为 750, 请设置html的font-size为 37.5px, 以便在布局视口宽度为 375 的页面中自适应 */
+.box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #ffffff;
+  width: 10rem;
+  height: 15.85rem;
+}
+.hd {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  z-index: 0;
+  background-color: #9c9c9c;
+  width: 10rem;
+  height: 1.2rem;
+  overflow: hidden;
+}
+.title {
+  max-width: 9.84rem;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  line-height: 0.48rem;
+  letter-spacing: 0;
+  color: #ededed;
+  font-size: 0.48rem;
+}
+.bd {
+  margin-top: 0.55rem;
+  width: 8rem;
+  height: 8rem;
+  overflow: hidden;
+}
+.main {
+  margin-top: 0.55rem;
+  padding-top: 0.13rem;
+  padding-bottom: 0.13rem;
+  width: 7.87rem;
+  height: 0.47rem;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  line-height: 0.24rem;
+  letter-spacing: 0;
+  color: #0d0d0d;
+  font-size: 0.45rem;
+}
+.submain {
+  margin-top: 0.19rem;
+  padding-top: 0.13rem;
+  padding-bottom: 0.13rem;
+  max-width: 7.04rem;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  line-height: 0.45rem;
+  letter-spacing: 0;
+  color: #0d0d0d;
+  font-size: 0.45rem;
+}
+.row {
+  margin-top: 0.45rem;
+  padding-top: 0.13rem;
+  padding-bottom: 0.13rem;
+  width: 6.67rem;
+  height: 0.79rem;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  line-height: 0.4rem;
+  letter-spacing: 0;
+  color: #323232;
+  font-size: 0.75rem;
+}
+.ft {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 0.63rem;
+  background-color: #fc0d1b;
+  width: 10rem;
+  height: 1.49rem;
+  overflow: hidden;
+}
+.copyPassword {
+  max-width: 9.84rem;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  line-height: 0.59rem;
+  letter-spacing: 0;
+  color: #ffffff;
+  font-size: 0.59rem;
+}
