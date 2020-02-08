@@ -1,8 +1,9 @@
-window.onload = function() {
+window.onload = function () {
     var btnEl = document.getElementById('pwdButton');
     if (btnEl) {
         btnEl.addEventListener('click', copyPasswordHandler)
     }
+
     function copyPasswordHandler(e) {
         var pwd = getPwd();
         copyToClipboard(pwd);
@@ -14,7 +15,7 @@ window.onload = function() {
         return pwd.slice(1, pwd.length - 1);
     }
 
-    function copyToClipboard (text) {
+    function copyToClipboard(text) {
         var textArea = document.createElement("textarea");
         textArea.style.opacity = 0;
         textArea.value = text;
