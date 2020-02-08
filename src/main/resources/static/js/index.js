@@ -30,9 +30,9 @@ window.onload = function () {
             var msg = successful ? '成功复制到剪贴板' : '该浏览器不支持点击复制到剪贴板';
             alert(msg);
         } catch (err) {
-            alert('该浏览器不支持点击复制到剪贴板');
+            alert('该浏览器不支持点击复制到剪贴板 ' + err);
         }
 
         document.body.removeChild(textArea);
     }
-}
+};
